@@ -8,7 +8,7 @@ const f2c = (f) => (f-32) * 5 / 9;
 
 const c2f = (c) => (9/5) * c + 32;
 
-const getTempC = () => 35 //parseInt(fs.readFileSync('/sys/bus/w1/devices/28-000008e53064/w1_slave', 'ascii').split(' ').pop().substr(2)) / 1000;
+const getTempC = () => parseInt(fs.readFileSync('/sys/bus/w1/devices/28-000008e53064/w1_slave', 'ascii').split(' ').pop().substr(2)) / 1000;
 
 const getTempF = () => c2f(getTempC())
 
