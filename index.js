@@ -12,8 +12,8 @@ const getTempC = () => parseInt(fs.readFileSync('/sys/bus/w1/devices/28-000008e5
 
 const getTempF = () => c2f(getTempC())
 
-const min_temp = 80;
-const max_temp = 90;
+const min_temp = 40;
+const max_temp = 50;
 
 const log = (msg) => {
 	console.log(msg);
