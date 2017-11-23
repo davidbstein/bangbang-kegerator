@@ -14,6 +14,34 @@ this tutorial might help - just soldier things to the correct leads
 
 https://learn.adafruit.com/adafruits-raspberry-pi-lesson-11-ds18b20-temperature-sensing/hardware
 
+## Set up the monitor
+
+- go to `drive.google.com`
+- add `google scripts`
+
+![add scripts](https://raw.githubusercontent.com/davidbstein/bangbang-kegerator/master/Screenshot%202017-11-23%2000.09.49.png)
+
+- make a script with the following code and save it
+
+```
+function doPost(e) {
+  props = PropertiesService.getScriptProperties();
+  arr = JSON.parse(props.getProperty("last_n") || '[]');
+  arr = arr.slice(0, 100);
+  arr.unshift(new Date() + " - " + e.postData.contents);
+  props.setProperty("last_n", JSON.stringify(arr));
+}
+
+function doGet(e) { 
+  props = PropertiesService.getScriptProperties()
+  arr = JSON.parse(props.getProperty("last_n") || '[]');
+  return HtmlService.createHtmlOutput("<pre>" + JSON.stringify(arr, null, "  ") + "</pre>")
+}
+```
+- go to publish > deploy as web app
+- save the link (you need to replace my link in `index.js`
+
+
 ## setup
 
  - install raspbian - https://www.raspberrypi.org/downloads/
